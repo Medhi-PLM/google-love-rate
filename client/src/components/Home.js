@@ -12,7 +12,6 @@ class Home extends Component {
       <div className="Home">
         <h1>Home</h1>
         <p>Test my new SEO tool</p>
-        {process.env.REACT_APP_WATSON_USERNAME}
       </div>
     );
   }

@@ -40,6 +40,7 @@ class AddCampaigns extends Component {
               corpus: corpus,
               message: `Your corpus '${corpus.URL}' has been created`
             })
+            this.props.history.push(`/campaigns/${corpus._id}/analysis`)
           setTimeout(() => {
             this.setState({
               message: null

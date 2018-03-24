@@ -78,11 +78,10 @@ router.get('/:id', (req, res,next) => {
 //Analysis campaign
 //List of Analysis
 router.get('/:id/analysis', (req, res, next) => {
-  Campaign
+  Corpus
   .findById(req.params.id)
-  .populate('analysis')
-  .then(campaign => {
-    res.json({success: 'List of Corpus', campaign});
+  .then(corpus => {
+    res.json({success: 'List of Corpus', corpus});
   })
   .catch((err) => {
     res.status(300).json({success: false});

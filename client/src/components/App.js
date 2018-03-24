@@ -40,8 +40,8 @@ class App extends Component {
         </header>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/campaigns" component={Campaigns} />
-          <Route path="/campaigns/${id}/analysis" component={Corpus} />
+          <Route path="/campaigns" exact component={Campaigns} />
+          <Route path="/campaigns/:id/analysis" component={Corpus} />
           <Route path="/add-campaigns" component={AddCampaigns} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />

@@ -26,13 +26,21 @@ export default {
       .catch(errHandler);
   },
 
-  //Access Corpus
+  //Access all Campaigns
+  getCampaignAnalyze(id) {
+    return service
+      .get(`/campaigns/${id}/analysis`)
+      .then(res => res.data.corpus)
+      .catch(errHandler);
+  },
+
+  /*Access Corpus
   getCampaignAnalyze(id) {
     return service
       .get(`/campaigns/${id}/analysis`)
       .then(res => res.data)
       .catch(errHandler);
-  },
+  },*/
   
   postCampaignAnalyze(id) {
     return service
