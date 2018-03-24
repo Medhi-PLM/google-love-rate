@@ -7,11 +7,11 @@ const cors = require('cors');
 const passport = require('passport');
 const { Strategy, ExtractJwt } = require("passport-jwt");
 
-const config = require("./config");
-var User = require('./models/user');
-var authRoutes = require('./routes/auth');
-var countriesRoutes = require('./routes/countries');
-var usersRoutes = require('./routes/users');
+const config = require('./config');
+const User = require('./models/user');
+const authRoutes = require('./routes/auth');
+const usersRoutes = require('./routes/users');
+const campaignsRoutes = require('./routes/campaigns');
 
 require('./configs/database');
 
@@ -59,8 +59,9 @@ passport.use(strategy);
 
 // List all your API routes
 app.use('/api', authRoutes);
-app.use('/api/countries', countriesRoutes);
+//app.use('/api/countries', countriesRoutes);
 app.use('/api/users', usersRoutes);
+app.use('/api/campaigns', campaignsRoutes);
 
 
 // For any routes that starts with "/api", catch 404 and forward to error handler

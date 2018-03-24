@@ -12,16 +12,31 @@ const errHandler = err => {
 export default {
   service: service,
   
-  getCountries() {
+  getCampaigns() {
     return service
-    .get('/countries')
+    .get('/campaigns')
     .then(res => res.data)
     .catch(errHandler);
   },
 
-  postCountries(data) {
+  postCampaigns(data) {
     return service
-      .post('/countries', data)
+      .post('/campaigns/new', data)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  //Access Corpus
+  getCampaignAnalyze(id) {
+    return service
+      .get(`/campaigns/${id}/analysis`)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+  
+  postCampaignAnalyze(id) {
+    return service
+      .post(`/campaigns/${id}/analysis`)
       .then(res => res.data)
       .catch(errHandler);
   },

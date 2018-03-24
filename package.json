@@ -8,5 +8,14 @@
     "start": "echo --- start --- && cd server && npm start",
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm run start"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "dotenv": "^5.0.1",
+    "jsdom": "^11.6.2",
+    "phantom": "^4.0.12",
+    "phantomjs": "^2.1.7",
+    "watson-developer-cloud": "^3.2.1"
   }
 }

@@ -6,11 +6,13 @@ class Home extends Component {
   //   this.state = {
   //   }
   // }
-  render() {                
+  render() {   
+    console.log(process.env)             
     return (
       <div className="Home">
-        <h2>Home</h2>
-        <p>This is a sample project with the MERN stack</p>
+        <h1>Home</h1>
+        <p>Test my new SEO tool</p>
+        {process.env.REACT_APP_WATSON_USERNAME}
       </div>
     );
   }

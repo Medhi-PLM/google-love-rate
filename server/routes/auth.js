@@ -5,13 +5,17 @@ const jwt = require('jwt-simple');
 const passport = require('passport');
 const config = require('../config');
 
+router.get('/signup', (req, res, next) => {
+  res.json({success: "signup"});
+})
 
 router.post('/signup', (req, res, next) => {
   // extract the info we need from the body of the request
-  const { email, name, password } = req.body;
+  const { firstname, lastname, email, password } = req.body;
   const user = new User({
+    firstname,
+    lastname,
     email,
-    name
   });
 
   User.register(user, password, err => {
@@ -19,6 +23,10 @@ router.post('/signup', (req, res, next) => {
     res.json({ success: true });
   });
 });
+
+router.get('/login', (req, res, next) => {
+  res.json({ success: "login"});
+})
 
 router.post('/login', (req, res, next) => {
   const authenticate = User.authenticate();
@@ -53,7 +61,7 @@ router.post('/login', (req, res, next) => {
         const token = jwt.encode(payload, config.jwtSecret);
         res.json({
           token,
-          name: user.name,
+          name: user.firstname,
         });
       }
     });
