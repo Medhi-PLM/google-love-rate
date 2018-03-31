@@ -5,8 +5,9 @@ class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      firstname: "",
+      lastname: "",
       email: "",
-      name: "",
       password: "",
     }
   }
@@ -21,8 +22,9 @@ class Signup extends Component {
   handleClick(e) {
     e.preventDefault()
     let data = {
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
       email: this.state.email,
-      name: this.state.name,
       password: this.state.password,
     }
     api.signup(data)
@@ -37,14 +39,33 @@ class Signup extends Component {
 
   render() {   
     return (
-      <div className="Signup">
-        <h2>Signup</h2>
-        <form>
-          Email: <input type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} /> <br/>
-          Name: <input type="text" value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} /> <br/>
-          Password: <input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}}  /> <br/>
-          <button onClick={(e) => this.handleClick(e)}>Signup</button>
-        </form>
+      <div class="formReact">
+        <h2>Créer un compte</h2>
+        <div class="field">
+          <label class="label">Nom</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Nom" value={this.state.lastname} onChange={(e) => {this.handleInputChange("lastname", e)}} />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Prénom</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Prénom" value={this.state.firstname} onChange={(e) => {this.handleInputChange("firstname", e)}} />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Adresse email</label>
+          <div class="control">
+            <input class="input" type="email" placeholder="Adresse email" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Mot de passe</label>
+          <div class="control">
+            <input class="input" type="password" placeholder="Mot de passe" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}} />
+          </div>
+        </div>
+        <button class="button is-link" onClick={(e) => this.handleClick(e)}>Créer votre compte</button>
       </div>
     );
   }

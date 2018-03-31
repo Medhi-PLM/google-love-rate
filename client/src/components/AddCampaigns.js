@@ -57,22 +57,35 @@ class AddCampaigns extends Component {
     }
   render() {                
     return (
-      <div className="AddCampaigns">
-        <h1>Add campaign</h1>
-        <form>
-          Name: <input type="text" value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} /> <br/>
-          Keyword: <input type="text" value={this.state.keyword} onChange={(e) => {this.handleInputChange("keyword", e)}}  /> <br/>
-          URL: <input type="text" value={this.state.URL} onChange={(e) => {this.handleInputChange("URL", e)}}  /> <br/>
-          <button onClick={(e) => this.handleClick(e)}>Create campaign</button>
-        </form>
-        <div style={{
-          margin: 10,
-          backgroundColor: "red",
-          display: this.state.message ? "block" : "none"
-        }}>
-          {this.state.message}
+      <div class="formReact">
+      <h2>Créer votre campagne</h2>
+        <div class="field">
+          <label class="label">Nom</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Nom" value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} />
+          </div>
         </div>
-        {this.state.corpus.keywords ? this.state.corpus.keywords.map( keyword => (<li>{keyword.text}</li>)) : ''}
+        <div class="field">
+          <label class="label">Mot clé</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Mot clé" value={this.state.keyword} onChange={(e) => {this.handleInputChange("keyword", e)}} />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">URL</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="URL" value={this.state.URL} onChange={(e) => {this.handleInputChange("URL", e)}} />
+          </div>
+        </div>  
+        <button class="button is-link" onClick={(e) => this.handleClick(e)}>Créer votre campagne</button>
+        <div style={{
+            margin: 10,
+            backgroundColor: "red",
+            display: this.state.message ? "block" : "none"
+          }}>
+            {this.state.message}
+        </div>
+          {this.state.corpus.keywords ? this.state.corpus.keywords.map( keyword => (<li>{keyword.text}</li>)) : ''}
       </div>
     );
   }

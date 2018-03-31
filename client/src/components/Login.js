@@ -31,13 +31,23 @@ class Login extends Component {
 
   render() {   
     return (
-      <div className="Login">
-        <h2>Login</h2>
-        <form>
-          Email: <input type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} /> <br/>
-          Password: <input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}}  /> <br/>
-          <button onClick={(e) => this.handleClick(e)}>Login</button>
-        </form>
+      <div class="formReact">
+        <h2>Ravi de vous revoir</h2>
+        <div class="field">
+          <label class="label">Adresse email</label>
+          <div class="control">
+            <input class="input" type="email" placeholder="Email input" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Mot de passe</label>
+          <div class="control">
+            <input class="input" type="password" placeholder="Email input" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}} />
+          </div>
+        </div>
+
+        <button class="button is-link" onClick={(e) => this.handleClick(e)}>Connexion</button>
       </div>
     );
   }
