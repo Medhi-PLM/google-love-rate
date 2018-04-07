@@ -80,4 +80,4 @@ router.get('/secret', passport.authenticate("jwt", config.jwtSession), (req, res
   });
 });
 
-module.exports = router;
+  module.exports = router;

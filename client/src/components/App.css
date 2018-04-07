@@ -122,6 +122,12 @@ h6 {
   margin: 80px 450px 80px;
 }
 
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
 .App {
   text-align: center;
 }
@@ -154,4 +160,8 @@ h6 {
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.flex {
+  display: flex;
 }

@@ -4,6 +4,7 @@ const User = require('../models/user');
 const Campaign = require('../models/campaign');
 const config = require('../config');
 const Corpus = require('../models/corpus');
+const passport = require('passport');
 
 const watsonConfig = require('../configs/watson')["natural-language-understanding"][0].credentials;
 
@@ -26,15 +27,15 @@ const cheerio = require('cheerio');
 const phantom = require('phantom');
 
 //CRUD Campaign
-router.get('/', (req, res, next) => {
-  Campaign.find()
+router.get('/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
+  Campaign.find({_creator:  req.user._id})
   .then(campaigns => {
     res.json(campaigns);    
   })
 });
 
 //Create Campaign
-router.post('/new', (req, res, next) => {
+router.post('/new', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   const {name, keyword, text, URL} = req.body;
   let newCampaign;
   if(text) {
@@ -42,20 +43,23 @@ router.post('/new', (req, res, next) => {
       name,
       keyword,
       text,
+      _creator: req.user._id,
     });
   } else {
     newCampaign = new Campaign({
       name,
       keyword,
       URL,
-
+      _creator: req.user._id,
     });
   }
   newCampaign.save((err) => {
     if(err) {
       res.json({success: false, msg: 'Campaign already exists.'});
     }
-    res.json({success: true, newCampaign});
+    else {
+      res.json({success: true, newCampaign});
+    }
   })
 });
 

@@ -11,7 +11,8 @@ class AddCampaigns extends Component {
       name: "",
       keyword: "",
       URL: "",
-      corpus: {}
+      corpus: {},
+      isCampaignLoading: false
     }
   }
 
@@ -24,6 +25,9 @@ class AddCampaigns extends Component {
 
   handleClick(e) {
     e.preventDefault()
+    this.setState({
+      isCampaignLoading: true
+    })
     console.log(this.state.name, this.state.keyword)
     let data = {
       name: this.state.name,
@@ -49,35 +53,56 @@ class AddCampaigns extends Component {
         })
           .catch(err => {
             console.log('ERROR postCampaignAnalyze')
+            this.setState({
+              isCampaignLoading: false,
+              errorMessage: "ERROR postCampaignAnalyze"
+            })
           })
       })
       .catch(err => {
           console.log('ERROR postCampaigns')
+          this.setState({
+            isCampaignLoading: false,
+            errorMessage: "ERROR postCampaigns"
+          })
       })
     }
-  render() {                
+  render() {
+    if (this.state.isCampaignLoading) {
+      return (
+        <div className="formReact">
+          Chargement...
+        </div>
+      )
+    }                
     return (
-      <div class="formReact">
-      <h2>Créer votre campagne</h2>
-        <div class="field">
-          <label class="label">Nom</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Nom" value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} />
+      <div className="formReact">
+        {this.state.errorMessage && 
+          <div className="notification is-danger">
+            <button onClick={(e) => this.setState({errorMessage: null})} className="delete"></button>
+            {this.state.errorMessage}
+          </div>
+        }
+        <h2>Créer votre campagne</h2>
+        <div className="field">
+          <label className="label">Nom</label>
+          <div className="control">
+            <input className="input" type="text" placeholder="Nom" value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} />
           </div>
         </div>
-        <div class="field">
-          <label class="label">Mot clé</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Mot clé" value={this.state.keyword} onChange={(e) => {this.handleInputChange("keyword", e)}} />
+        <div className="field">
+          <label className="label">Mot clé</label>
+          <div className="control">
+            <input className="input" type="text" placeholder="Mot clé" value={this.state.keyword} onChange={(e) => {this.handleInputChange("keyword", e)}} />
           </div>
         </div>
-        <div class="field">
-          <label class="label">URL</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="URL" value={this.state.URL} onChange={(e) => {this.handleInputChange("URL", e)}} />
+        <div className="field">
+          <label className="label">URL</label>
+          <div className="control">
+            <input className="input" type="text" placeholder="URL" value={this.state.URL} onChange={(e) => {this.handleInputChange("URL", e)}} />
           </div>
         </div>  
-        <button class="button is-link" onClick={(e) => this.handleClick(e)}>Créer votre campagne</button>
+        <button className="button is-link" onClick={(e) => this.handleClick(e)}>Créer votre campagne</button>
         <div style={{
             margin: 10,
             backgroundColor: "red",
